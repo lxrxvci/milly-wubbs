@@ -1,0 +1,279 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 0.625rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* ============================================================
+   MILLY WUBBS — cinematic dark system
+   ============================================================ */
+
+:root {
+  --mw-bg: #0a0a0a;
+  --mw-ink: #ebebeb;
+  --mw-accent: #ff6d1b;   /* THE single accent — Milly's orange */
+  --mw-chrome: #c9c9cf;   /* silver material, not a color accent */
+  --mw-grey: #55555a;
+  --mw-dim: #8b8b90;
+}
+
+html {
+  background: var(--mw-bg);
+  scrollbar-width: none; /* custom progress rail instead */
+}
+
+html, body {
+  overflow-x: clip;
+}
+
+::-webkit-scrollbar { width: 0; height: 0; }
+
+body {
+  background: var(--mw-bg);
+  color: var(--mw-ink);
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* custom cursor replaces the stock pointer on precise devices */
+@media (hover: hover) and (pointer: fine) {
+  body, a, button, [role="button"] { cursor: none; }
+}
+
+::selection { background: var(--mw-accent); color: #0a0a0b; }
+
+.font-display { font-family: 'Anton', 'Space Grotesk', sans-serif; letter-spacing: 0.01em; }
+.font-label { font-family: 'Silkscreen', 'Space Grotesk', monospace; letter-spacing: 0.18em; }
+.font-hand { font-family: 'Permanent Marker', cursive; }
+
+/* outlined ghost type (Techno Emergency / Rady grammar) */
+.mw-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(235,235,235,0.22);
+}
+
+/* HUD microtext + vertical rail */
+.mw-hud {
+  font-family: 'Silkscreen', monospace; font-size: 10px;
+  letter-spacing: 0.24em; text-transform: uppercase; color: var(--mw-dim);
+}
+.mw-vtext { writing-mode: vertical-rl; }
+
+/* dashed divider (viewfinder/utilitarian grammar) */
+.mw-dash { height: 0; border-top: 1px dashed rgba(235,235,235,0.22); }
+
+/* viewfinder corner bracket */
+.mw-vf {
+  position: absolute; width: 14px; height: 14px; pointer-events: none;
+  border-color: var(--mw-accent); border-style: solid; border-width: 0;
+}
+.mw-vf-ink { border-color: rgba(235,235,235,0.45); }
+
+/* custom cursor: dot + trailing ring with context label */
+.mw-cursor-dot, .mw-cursor-ring {
+  position: fixed; top: 0; left: 0; z-index: 90; pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+.mw-cursor-dot { width: 6px; height: 6px; background: var(--mw-accent); border-radius: 50%; }
+.mw-cursor-ring {
+  min-width: 34px; height: 34px; border: 1px solid rgba(235,235,235,0.5); border-radius: 999px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 8px;
+  transition: border-color .2s ease, background-color .2s ease;
+}
+.mw-cursor-ring span {
+  font-family: 'Silkscreen', monospace; font-size: 9px; letter-spacing: 0.18em;
+  color: var(--mw-ink); opacity: 0; transition: opacity .15s ease; white-space: nowrap;
+}
+.mw-cursor-ring[data-active="true"] { border-color: var(--mw-accent); background: rgba(10,10,10,0.55); backdrop-filter: blur(2px); }
+.mw-cursor-ring[data-active="true"] span { opacity: 1; }
+@media (hover: none), (pointer: coarse) { .mw-cursor-dot, .mw-cursor-ring { display: none; } }
+
+/* gallery caption overlay (inside frame, bottom-left) */
+.mw-cap-overlay {
+  position: absolute; left: 10px; bottom: 10px; right: 10px;
+  display: flex; justify-content: space-between; gap: 8px;
+  padding: 6px 8px; background: rgba(10,10,10,0.55); backdrop-filter: blur(3px);
+  font-family: 'Silkscreen', monospace; font-size: 10px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: rgba(235,235,235,0.85);
+}
+
+/* nav link hover — underline sweeps in from the left */
+.mw-navlink { position: relative; padding-bottom: 3px; }
+.mw-navlink::after {
+  content: ''; position: absolute; left: 0; bottom: 0; height: 1px; width: 100%;
+  background: var(--mw-accent); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.mw-navlink:hover::after { transform: scaleX(1); }
+
+/* ticker marquee */
+@keyframes mw-ticker-x {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.mw-ticker-track {
+  display: flex; width: max-content; will-change: transform;
+  animation: mw-ticker-x 22s linear infinite;
+}
+
+/* sticker badge (hard offset shadow, slight tilt) */
+.mw-sticker {
+  display: inline-block;
+  font-family: 'Silkscreen', monospace; font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; padding: 6px 10px;
+  background: var(--mw-accent); color: #0a0a0a;
+  box-shadow: 4px 4px 0 rgba(235,235,235,0.9);
+  transform: rotate(-3deg);
+}
+.mw-sticker.mw-sticker-ghost {
+  background: transparent; color: var(--mw-ink);
+  border: 1px solid rgba(235,235,235,0.5);
+  box-shadow: 4px 4px 0 rgba(255,109,27,0.85);
+}
+
+/* ---- fixed layers ---- */
+.mw-canvas-wrap {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+}
+.mw-grain {
+  position: fixed; inset: -50%; z-index: 40; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='128'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='128' height='128' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.07; mix-blend-mode: overlay;
+  animation: mw-grain-jitter 0.5s steps(4) infinite;
+}
+@keyframes mw-grain-jitter {
+  0% { transform: translate(0,0); } 25% { transform: translate(-2%,1%); }
+  50% { transform: translate(1%,-2%); } 75% { transform: translate(-1%,2%); }
+  100% { transform: translate(2%,-1%); }
+}
+
+/* LED scanline treatment for media frames */
+.mw-ledframe { position: relative; overflow: hidden; }
+.mw-ledframe::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgba(0,0,0,0.22) 0 1px, transparent 1px 3px);
+  mix-blend-mode: multiply;
+}
+
+/* char reveal scaffolding */
+.mw-line { overflow: hidden; display: block; }
+.mw-char { display: inline-block; transform: translateY(115%); will-change: transform; }
+
+/* section index label */
+.mw-index {
+  font-family: 'Silkscreen', monospace; letter-spacing: 0.22em;
+  font-size: 11px; color: var(--mw-accent); text-transform: uppercase;
+}
+
+/* divider rule */
+.mw-rule { height: 1px; background: rgba(235,235,235,0.14); }
+
+/* link hover — accent only, monochrome discipline */
+a { transition: color .2s ease; }
+a:hover { color: var(--mw-accent); }
+
+/* nav hide/show */
+.mw-nav { transition: transform .35s ease; }
+.mw-nav.mw-hidden { transform: translateY(-100%); }
+
+/* sound toggle pulse when idle */
+@keyframes mw-pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(255,109,27,.45); }
+  70% { box-shadow: 0 0 0 14px rgba(255,109,27,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,109,27,0); }
+}
+.mw-sound-cta { animation: mw-pulse-ring 2.2s ease-out infinite; }
+.mw-sound-cta[data-on="true"] { animation: none; }
+
+/* photo captions */
+.mw-cap { font-family:'Silkscreen',monospace; font-size:10px; letter-spacing:.2em; color:var(--mw-dim); text-transform:uppercase; }
+
+/* booking button */
+.mw-book {
+  background: var(--mw-accent); color: #0a0a0b;
+  font-family:'Silkscreen',monospace; letter-spacing:.18em; font-size:12px;
+  padding: 10px 18px; text-transform: uppercase;
+  transition: transform .15s ease, background .2s ease;
+}
+.mw-book:hover { background: var(--mw-ink); transform: translateY(-2px); color:#0a0a0a; }
+
+/* reduced motion: kill loops, keep design */
+@media (prefers-reduced-motion: reduce) {
+  .mw-grain { animation: none; }
+  .mw-sound-cta { animation: none; }
+  .mw-ticker-track { animation: none; }
+  .mw-cursor-dot, .mw-cursor-ring { display: none; }
+  body, a, button, [role="button"] { cursor: auto; }
+  * { scroll-behavior: auto !important; }
+}
