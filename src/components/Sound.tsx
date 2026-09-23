@@ -9,11 +9,14 @@ gsap.registerPlugin(ScrollTrigger);
 const BARS = 48;
 
 const TRACKS = [
-  { title: 'Money Right', kind: 'Original', url: 'https://soundcloud.com/chendo-urcino-1/money-right' },
-  { title: 'Hands On The Wheel (Sticky Icky Edit)', kind: 'Edit', url: 'https://soundcloud.com/chendo-urcino-1/hands-on-the-wheel-sticky-icky' },
-  { title: 'David Guetta: BAD (Milly Flip)', kind: 'Flip', url: 'https://soundcloud.com/chendo-urcino-1/david-guetta-bad-milly-flip' },
-  { title: 'Metallica: Unforgiven (Milly Wubbs Flip)', kind: 'Flip', url: 'https://soundcloud.com/chendo-urcino-1/metallica-unforgiven-milly-wubbs-flip' },
+  { title: 'Money Right', kind: 'Original', id: '2341217519', url: 'https://soundcloud.com/chendo-urcino-1/money-right' },
+  { title: 'Hands On The Wheel (Sticky Icky Edit)', kind: 'Edit', id: '2049844936', url: 'https://soundcloud.com/chendo-urcino-1/hands-on-the-wheel-sticky-icky' },
+  { title: 'David Guetta: BAD (Milly Flip)', kind: 'Flip', id: '2274255269', url: 'https://soundcloud.com/chendo-urcino-1/david-guetta-bad-milly-flip' },
+  { title: 'Metallica: Unforgiven (Milly Wubbs Flip)', kind: 'Flip', id: '2107926735', url: 'https://soundcloud.com/chendo-urcino-1/metallica-unforgiven-milly-wubbs-flip' },
 ];
+
+const scEmbed = (id: string) =>
+  `https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/${id}&color=%23ff6d1b&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&show_artwork=true`;
 
 function fmt(t: number) {
   if (!isFinite(t) || t < 0) return '0:00';
@@ -30,6 +33,7 @@ export default function Sound({ soundOn, onToggleSound }: { soundOn: boolean; on
   const barVals = useRef<Float32Array>(new Float32Array(BARS).fill(0.08));
   const seekRef = useRef<HTMLDivElement>(null);
   const [time, setTime] = useState<[number, number]>([0, 0]);
+  const [openTrack, setOpenTrack] = useState<number | null>(null);
 
   useEffect(() => {
     let raf = 0;
@@ -176,25 +180,59 @@ export default function Sound({ soundOn, onToggleSound }: { soundOn: boolean; on
             <p className="mw-cap mt-3 flex justify-between"><span>On the decks · PDX</span><span className="text-[var(--mw-accent)]">FIG. 01</span></p>
           </div>
         </div>
-        {/* latest tracks — newest first, full width */}
+        {/* latest tracks — newest first, full width. A row expands to an
+            embedded player; only one plays at a time. */}
         <div className="mt-10">
-          <p className="mw-hud mb-4">Latest tracks</p>
+          <p className="mw-hud mb-4">Latest tracks · click to play</p>
           {TRACKS.map((t, i) => (
-            <div key={i} className="group border-t border-white/12 py-4 flex items-center gap-4 px-2 -mx-2 hover:bg-white/[0.03] transition-colors">
-              <span className="font-label text-[11px] text-[var(--mw-dim)] w-6">{String(i + 1).padStart(2, '0')}</span>
-              <div className="min-w-0">
-                <p className="font-display uppercase text-lg md:text-xl tracking-tight text-[var(--mw-ink)] leading-tight">{t.title}</p>
-                <p className="mw-cap mt-1">{t.kind}</p>
-              </div>
-              <a
-                href={t.url}
-                target="_blank"
-                rel="noreferrer"
-                className="ml-auto shrink-0 font-label text-[10px] uppercase tracking-widest border border-white/25 text-[var(--mw-ink)] px-3 py-2 hover:border-[var(--mw-accent)] hover:text-[var(--mw-accent)] transition-colors"
-                data-cursor="PLAY"
+            <div key={i} className="border-t border-white/12">
+              <button
+                type="button"
+                onClick={() => setOpenTrack(openTrack === i ? null : i)}
+                aria-expanded={openTrack === i}
+                aria-controls={`track-panel-${i}`}
+                data-cursor={openTrack === i ? 'CLOSE' : 'PLAY'}
+                className="group w-full text-left py-4 flex items-center gap-4 px-2 -mx-2 hover:bg-white/[0.03] transition-colors"
               >
-                ▶ SC
-              </a>
+                <span className="font-label text-[11px] text-[var(--mw-dim)] w-6">{String(i + 1).padStart(2, '0')}</span>
+                <div className="min-w-0">
+                  <p className="font-display uppercase text-lg md:text-xl tracking-tight text-[var(--mw-ink)] leading-tight">{t.title}</p>
+                  <p className="mw-cap mt-1">{t.kind}</p>
+                </div>
+                <span
+                  className={`ml-auto shrink-0 font-label text-[10px] uppercase tracking-widest border px-3 py-2 transition-colors ${
+                    openTrack === i
+                      ? 'border-[var(--mw-accent)] text-[var(--mw-accent)]'
+                      : 'border-white/25 text-[var(--mw-ink)] group-hover:border-[var(--mw-accent)] group-hover:text-[var(--mw-accent)]'
+                  }`}
+                >
+                  {openTrack === i ? '× Close' : '▶ Play'}
+                </span>
+              </button>
+              {openTrack === i && (
+                <div id={`track-panel-${i}`} className="px-2 pb-5">
+                  <iframe
+                    title={`${t.title} · Milly Wubbs on SoundCloud`}
+                    width="100%"
+                    height="166"
+                    scrolling="no"
+                    frameBorder="no"
+                    allow="autoplay"
+                    loading="lazy"
+                    src={scEmbed(t.id)}
+                    className="w-full"
+                  />
+                  <a
+                    href={t.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mw-cap inline-block mt-3 hover:text-[var(--mw-accent)] transition-colors"
+                    data-cursor="LISTEN"
+                  >
+                    Open on SoundCloud ↗
+                  </a>
+                </div>
+              )}
             </div>
           ))}
           <div className="border-t border-white/12" />
