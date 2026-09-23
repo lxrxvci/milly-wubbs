@@ -97,19 +97,30 @@ export default function Vault() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {pressShots.map((p, i) => (
               <a key={i} href={p.src} download className="group block" data-cursor="SAVE">
-                <span className="mw-ledframe block">
+                <span className="mw-ledframe block relative">
                   <img src={p.src} alt={p.label} loading="lazy" decoding="async" className="w-full aspect-[4/5] object-cover group-hover:opacity-80 transition-opacity" />
+                  <span className="absolute top-2 right-2 font-label text-[10px] px-2 py-1 border border-[var(--mw-accent)] text-[var(--mw-accent)] bg-black/60 group-hover:bg-[var(--mw-accent)] group-hover:text-black transition-colors">↓</span>
                 </span>
                 <span className="mw-cap block mt-2">{p.label}</span>
               </a>
             ))}
           </div>
-          <div className="flex flex-wrap gap-x-8 gap-y-3 mt-5">
-            <a href="/press-kit.zip" download className="mw-cap text-[var(--mw-accent)] hover:text-[var(--mw-ink)] transition-colors" data-cursor="SAVE">
+          <div className="flex flex-wrap gap-4 mt-6">
+            <a
+              href="/press-kit.zip"
+              download
+              className="font-label text-[11px] uppercase tracking-widest border border-[var(--mw-accent)] text-[var(--mw-accent)] px-5 py-3 hover:bg-[var(--mw-accent)] hover:text-black transition-colors"
+              data-cursor="SAVE"
+            >
               ↓ Full press kit · photos + logo (zip)
             </a>
-            <a href="/logo.png" download className="mw-cap text-[var(--mw-accent)] hover:text-[var(--mw-ink)] transition-colors" data-cursor="SAVE">
-              ↓ Logo pack · MILLY WUBBS white throwie (PNG, transparent)
+            <a
+              href="/logo.png"
+              download
+              className="font-label text-[11px] uppercase tracking-widest border border-[var(--mw-accent)] text-[var(--mw-accent)] px-5 py-3 hover:bg-[var(--mw-accent)] hover:text-black transition-colors"
+              data-cursor="SAVE"
+            >
+              ↓ Logo pack · white throwie (PNG)
             </a>
           </div>
         </div>
