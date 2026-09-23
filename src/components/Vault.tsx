@@ -75,7 +75,7 @@ export default function Vault() {
           />
           <CopyBlock
             title="Extended bio · 120 words"
-            text="Milly Wubbs is a bass producer and DJ out of Portland, Oregon, and a longtime fixture of the Pacific Northwest riddim scene. After years on the rail as a fan, including every Lost Lands he could reach, he moved behind the decks, earning direct support for Space Laces, a billing alongside Jantsen at Realm PDX, and a festival set at the Metamorphosis Music & Arts Project. His sets run 140+ BPM: dubstep, riddim and heavy wubs with precise sound design, delivered with a joyful, unbothered stage presence: kandi on the wrist, orange on the chest. Available for festivals, club shows and direct support slots across the bass circuit. Booking, collabs and press: one inbox."
+            text="Milly Wubbs is a bass producer and DJ out of Portland, Oregon, and a longtime fixture of the Pacific Northwest riddim scene. After years on the rail as a fan, he moved behind the decks, earning direct support for Space Laces and slots with Slander, Champagne Drip, Jantsen and Ayy Gee, plus festival plays at the Metamorphosis Music & Arts Project and the Lost Lands silent disco. His sets run 140+ BPM: dubstep, riddim and heavy wubs with precise sound design, delivered with a joyful, unbothered stage presence: kandi on the wrist, orange on the chest. Available for festivals, club shows and direct support slots across the bass circuit. Booking, collabs and press: one inbox."
           />
         </div>
 

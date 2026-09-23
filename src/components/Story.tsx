@@ -58,10 +58,10 @@ export default function Story() {
               sets are loud, precise and genuinely joyful.
             </p>
             <p className="mt-6 text-[var(--mw-dim)] leading-relaxed max-w-[56ch]">
-              Billed alongside Jantsen at Realm PDX, fresh off the Metamorphosis Music &amp; Arts
-              Project, and a familiar face at Lost Lands. Milly pairs careful sound
-              design with an easygoing stage presence. Kandi on the wrist, orange on
-              the chest, wubs on the system.
+              Billed alongside Jantsen, Slander and Champagne Drip, fresh off the
+              Metamorphosis Music &amp; Arts Project, and a silent disco set at Lost
+              Lands. Milly pairs careful sound design with an easygoing stage presence.
+              Kandi on the wrist, orange on the chest, wubs on the system.
             </p>
 
             {/* stat cluster — deliberately unequal: sizes, offsets, one tilted */}
