@@ -83,7 +83,7 @@ export default function Sound({ soundOn, onToggleSound }: { soundOn: boolean; on
         <p className="mw-index mb-4">01 / The Sound</p>
         <Reveal
           variant="clip"
-          text="DUBSTEP, RIDDIM & HEAVY WUBS"
+          text="DUBSTEP, RIDDIM & HEAVY WUBBS"
           className="font-display uppercase text-[9vw] md:text-[5.5vw] leading-[0.9] text-[var(--mw-ink)]"
         />
         <p className="mt-14 text-[var(--mw-dim)] max-w-[52ch] leading-relaxed">
@@ -135,7 +135,7 @@ export default function Sound({ soundOn, onToggleSound }: { soundOn: boolean; on
                   aria-pressed={soundOn}
                   data-cursor={soundOn ? 'PAUSE' : 'PLAY'}
                 >
-                  {soundOn ? '⏸ Pause' : '▶ Play the wubs'}
+                  {soundOn ? '⏸ Pause' : '▶ Play the wubbs'}
                 </button>
                 <span className="mw-cap tabular-nums">{fmt(time[0])} / {fmt(time[1])}</span>
               </div>

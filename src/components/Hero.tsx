@@ -44,7 +44,7 @@ export default function Hero() {
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
         <span className="mw-hud absolute left-5 md:left-6 top-[4.5rem]">Producer \\ DJ</span>
         <span className="mw-hud absolute right-5 md:right-6 top-[4.5rem]">PDX · 45.5152° N</span>
-        <span className="mw-hud mw-vtext absolute left-6 top-1/2 -translate-y-1/2 hidden md:block">Heavy wubs · big smiles</span>
+        <span className="mw-hud mw-vtext absolute left-6 top-1/2 -translate-y-1/2 hidden md:block">Heavy wubbs · big smiles</span>
         <span className="mw-hud mw-vtext absolute right-6 top-1/2 -translate-y-1/2 rotate-180 hidden md:block">EST. the rail, 2019</span>
         <span className="mw-vf mw-vf-ink left-4 top-[4.2rem] border-t border-l" />
         <span className="mw-vf mw-vf-ink right-4 top-[4.2rem] border-t border-r" />
@@ -67,7 +67,7 @@ export default function Hero() {
       {/* tagline — bottom-left block */}
       <div className="absolute z-10 left-5 md:left-[7vw] bottom-28 md:bottom-14 max-w-[70vw]">
         <p className="font-display uppercase text-[var(--mw-ink)] text-xl md:text-3xl tracking-tight leading-[1.05]">
-          Heavy wubs. <span className="text-[var(--mw-accent)]">Big smiles.</span><br />
+          Heavy wubbs. <span className="text-[var(--mw-accent)]">Big smiles.</span><br />
           Riddim &amp; dubstep · Portland, OR.
         </p>
       </div>

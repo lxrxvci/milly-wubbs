@@ -61,7 +61,7 @@ export default function Story() {
               Billed alongside Jantsen, Slander and Champagne Drip, fresh off the
               Metamorphosis Music &amp; Arts Project, and a silent disco set at Lost
               Lands. Milly pairs careful sound design with an easygoing stage presence.
-              Kandi on the wrist, orange on the chest, wubs on the system.
+              Kandi on the wrist, orange on the chest, wubbs on the system.
             </p>
 
             {/* stat cluster — deliberately unequal: sizes, offsets, one tilted */}
@@ -76,7 +76,7 @@ export default function Story() {
               </div>
               <div className="border border-white/15 bg-black/60 backdrop-blur-sm p-4 -rotate-2 translate-y-1">
                 <p className="font-display text-2xl md:text-3xl text-[var(--mw-ink)]">6K</p>
-                <p className="mw-cap mt-2">Wub fam on IG</p>
+                <p className="mw-cap mt-2">Wubb fam on IG</p>
               </div>
             </div>
           </div>

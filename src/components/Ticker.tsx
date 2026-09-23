@@ -1,7 +1,7 @@
 /* Ticker — the streetwear marquee. One accent word per loop, everything
    else monochrome. Duplicated content makes the -50% loop seamless. */
 const ITEMS = [
-  'Heavy wubs', 'Big smiles', 'Dubstep / riddim / bass', 'PDX',
+  'Heavy wubbs', 'Big smiles', 'Dubstep / riddim / bass', 'PDX',
   '140+ BPM', 'Portland, OR', 'Direct support · Space Laces',
 ];
 

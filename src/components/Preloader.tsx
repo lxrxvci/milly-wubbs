@@ -41,7 +41,7 @@ export default function Preloader({ onDone }: { onDone: () => void }) {
     >
       <img src="/logo.png" alt="MILLY WUBBS" className="w-[60vw] max-w-[420px] h-auto" />
       <p className="font-label text-[11px] text-[var(--mw-accent)] mt-8 tracking-[0.3em]">
-        LOADING THE WUBS · {pct}%
+        LOADING THE WUBBS · {pct}%
       </p>
     </div>
   );

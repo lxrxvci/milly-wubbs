@@ -5,7 +5,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-5 md:px-8 py-16 text-black">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-10">
           <div>
-            <p className="font-label text-[11px] uppercase tracking-[0.25em] mb-4">Wub fam HQ</p>
+            <p className="font-label text-[11px] uppercase tracking-[0.25em] mb-4">Wubb fam HQ</p>
             <div className="flex flex-wrap gap-x-6 gap-y-2 font-label text-[12px] uppercase">
               <a href="https://www.instagram.com/milly_wubbs/" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">Instagram</a>
               <a href="https://soundcloud.com/chendo-urcino-1" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">SoundCloud</a>
