@@ -75,6 +75,10 @@ class AudioEngine {
   playing = false;
   // smoothed output bands (0..1)
   bass = 0; mids = 0; highs = 0; level = 0;
+  // kick transient: short-term bass vs its own slow baseline.
+  // Fast attack, slow release — reads as a pump, not a strobe.
+  punch = 0;
+  private bassAvg = 0;
 
   init(src: string) {
     if (this.el) return;
@@ -126,6 +130,7 @@ class AudioEngine {
       this.mids += (0 - this.mids) * 0.06;
       this.highs += (0 - this.highs) * 0.06;
       this.level += (0 - this.level) * 0.06;
+      this.punch += (0 - this.punch) * 0.06;
       return;
     }
     this.analyser.getByteFrequencyData(this.freq);
@@ -133,12 +138,18 @@ class AudioEngine {
       let s = 0; for (let i = a; i < b; i++) s += this.freq![i];
       return s / ((b - a) * 255);
     };
-    const b = avg(0, 24), m = avg(24, 128), h = avg(128, 256);
+    // fftSize 512 @44.1kHz → ~86Hz/bin. Dubstep kick/sub lives in bins 1–8;
+    // splitting wider buries the transient in low-mid soup.
+    const b = avg(1, 8), m = avg(8, 96), h = avg(96, 220);
     this.bass += (b - this.bass) * 0.35;
     this.mids += (m - this.mids) * 0.3;
     this.highs += (h - this.highs) * 0.3;
     const lv = (b * 0.6 + m * 0.3 + h * 0.1);
     this.level += (lv - this.level) * 0.3;
+    // punch: how far this frame's bass overshoots its slow baseline
+    this.bassAvg += (b - this.bassAvg) * 0.04;
+    const over = Math.min(1, Math.max(0, b - this.bassAvg * 1.15) * 3.5);
+    this.punch += (over - this.punch) * (over > this.punch ? 0.5 : 0.07);
   }
 }
 

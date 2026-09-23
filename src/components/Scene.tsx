@@ -13,6 +13,7 @@ import type { QualityTier } from '../lib/engine';
 const particleVert = /* glsl */ `
   uniform float uTime;
   uniform float uBass;
+  uniform float uPunch;
   uniform float uScroll;
   uniform float uEnergy;
   attribute float aScale;
@@ -25,14 +26,14 @@ const particleVert = /* glsl */ `
     float t = uTime * 0.12 + aSeed * 6.2831;
     p.x += sin(t + p.y * 0.35) * 0.6 * (0.4 + uEnergy);
     p.y += cos(t * 0.8 + p.x * 0.25) * 0.5 * (0.4 + uEnergy);
-    float breathe = 1.0 + uBass * 1.6 * uEnergy;
+    float breathe = 1.0 + (uBass * 0.7 + uPunch * 1.1) * uEnergy;
     p *= breathe;
     p.y += uScroll * 14.0;
     vec4 mv = modelViewMatrix * vec4(p, 1.0);
     gl_Position = projectionMatrix * mv;
-    float size = aScale * (2.4 + uBass * 6.0 * uEnergy);
+    float size = aScale * (2.4 + (uBass * 2.5 + uPunch * 4.5) * uEnergy);
     gl_PointSize = size * (28.0 / -mv.z);
-    vAlpha = smoothstep(-22.0, -4.0, mv.z) * (0.28 + uEnergy * 0.4 + uBass * 0.35);
+    vAlpha = smoothstep(-22.0, -4.0, mv.z) * (0.28 + uEnergy * 0.4 + uBass * 0.2 + uPunch * 0.3);
     vSeed = aSeed;
   }
 `;
@@ -81,6 +82,7 @@ function ParticleField({ tier }: { tier: QualityTier }) {
   const uniforms = useMemo(() => ({
     uTime: { value: 0 },
     uBass: { value: 0 },
+    uPunch: { value: 0 },
     uHighs: { value: 0 },
     uPush: { value: 0 },
     uScroll: { value: 0 },
@@ -91,6 +93,7 @@ function ParticleField({ tier }: { tier: QualityTier }) {
     audioEngine.update();
     uniforms.uTime.value += dt;
     uniforms.uBass.value = audioEngine.bass;
+    uniforms.uPunch.value = audioEngine.punch;
     uniforms.uHighs.value = audioEngine.highs;
     uniforms.uScroll.value = scrollStore.progress;
     uniforms.uPush.value = pushAmount(scrollStore.progress);
@@ -155,12 +158,14 @@ function Lasers() {
     const act = actState(p);
     const push = pushAmount(p);
     const bass = audioEngine.bass;
+    const punch = audioEngine.punch;
     mats.current.forEach((m, i) => {
       if (!m) return;
       const isAccent = i === 1;
       const gain = isAccent ? (0.2 + push * 1.6) : (1.0 - push * 0.4);
-      // act gain gates the whole rig; idle floor so beams breathe even pre-audio
-      m.uniforms.uPulse.value = act.lasers * gain * (0.18 + bass * 1.2) * (0.7 + 0.3 * Math.sin(i * 1.7));
+      // act gain gates the whole rig; idle floor so beams breathe even
+      // pre-audio — kicks flash the rig via punch
+      m.uniforms.uPulse.value = act.lasers * gain * (0.16 + bass * 0.7 + punch * 1.4) * (0.7 + 0.3 * Math.sin(i * 1.7));
     });
   });
 
@@ -200,7 +205,7 @@ function ChromeKnot() {
     mesh.current.rotation.x += dt * speed;
     mesh.current.rotation.y += dt * speed * 0.7;
     // entrance: scale + drift up as the envelope opens
-    const s = 0.001 + knot * (1.0 + audioEngine.bass * 0.12);
+    const s = 0.001 + knot * (1.0 + audioEngine.bass * 0.08 + audioEngine.punch * 0.22);
     mesh.current.scale.setScalar(s);
     mesh.current.position.y = -4.9 + (1 - knot) * -2.5 + Math.sin(scrollStore.progress * 9.0) * 0.3 * knot;
     mat.current.opacity = knot;
@@ -257,7 +262,7 @@ function PostStack() {
     const p = scrollStore.progress;
     const push = pushAmount(p);
     const v = scrollStore.veloSm;
-    if (bloom.current) bloom.current.intensity = 0.45 + audioEngine.bass * 0.45 * actState(p).energy + push * 1.1 + v * 0.25;
+    if (bloom.current) bloom.current.intensity = 0.45 + (audioEngine.bass * 0.3 + audioEngine.punch * 0.65) * actState(p).energy + push * 1.1 + v * 0.25;
     if (ca.current) {
       const o = 0.0004 + v * 0.0022;
       ca.current.offset.x = o;
