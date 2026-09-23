@@ -8,6 +8,13 @@ gsap.registerPlugin(ScrollTrigger);
 
 const BARS = 48;
 
+const TRACKS = [
+  { title: 'Money Right', kind: 'Original', url: 'https://soundcloud.com/chendo-urcino-1/money-right' },
+  { title: 'Hands On The Wheel (Sticky Icky Edit)', kind: 'Edit', url: 'https://soundcloud.com/chendo-urcino-1/hands-on-the-wheel-sticky-icky' },
+  { title: 'David Guetta — BAD (Milly Flip)', kind: 'Flip', url: 'https://soundcloud.com/chendo-urcino-1/david-guetta-bad-milly-flip' },
+  { title: 'Metallica — Unforgiven (Milly Wubbs Flip)', kind: 'Flip', url: 'https://soundcloud.com/chendo-urcino-1/metallica-unforgiven-milly-wubbs-flip' },
+];
+
 function fmt(t: number) {
   if (!isFinite(t) || t < 0) return '0:00';
   const m = Math.floor(t / 60);
@@ -154,6 +161,29 @@ export default function Sound({ soundOn, onToggleSound }: { soundOn: boolean; on
                 src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2391999510&color=%23ff6d1b&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false"
                 className="w-full"
               />
+            </div>
+            {/* latest tracks — newest first */}
+            <div className="mt-10">
+              <p className="mw-hud mb-4">Latest tracks</p>
+              {TRACKS.map((t, i) => (
+                <div key={i} className="group border-t border-white/12 py-4 flex items-center gap-4 px-2 -mx-2 hover:bg-white/[0.03] transition-colors">
+                  <span className="font-label text-[11px] text-[var(--mw-dim)] w-6">{String(i + 1).padStart(2, '0')}</span>
+                  <div className="min-w-0">
+                    <p className="font-display uppercase text-lg md:text-xl tracking-tight text-[var(--mw-ink)] leading-tight">{t.title}</p>
+                    <p className="mw-cap mt-1">{t.kind}</p>
+                  </div>
+                  <a
+                    href={t.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="ml-auto shrink-0 font-label text-[10px] uppercase tracking-widest border border-white/25 text-[var(--mw-ink)] px-3 py-2 hover:border-[var(--mw-accent)] hover:text-[var(--mw-accent)] transition-colors"
+                    data-cursor="PLAY"
+                  >
+                    ▶ SC
+                  </a>
+                </div>
+              ))}
+              <div className="border-t border-white/12" />
             </div>
           </div>
           <div className="relative">
