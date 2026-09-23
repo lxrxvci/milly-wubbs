@@ -107,6 +107,10 @@ export default function Nav({ onBook }: { onBook: () => void }) {
             </a>
           ))}
           <p className="mw-cap mt-8">Milly Wubbs — PDX bass · booking@millywubbs.com</p>
+          <div className="flex gap-6 mt-4 font-label text-[12px] uppercase">
+            <a href="https://www.instagram.com/milly_wubbs/" target="_blank" rel="noreferrer" className="text-[var(--mw-dim)] active:text-[var(--mw-accent)]">Instagram ↗</a>
+            <a href="https://soundcloud.com/chendo-urcino-1" target="_blank" rel="noreferrer" className="text-[var(--mw-dim)] active:text-[var(--mw-accent)]">SoundCloud ↗</a>
+          </div>
         </div>
       )}
     </>

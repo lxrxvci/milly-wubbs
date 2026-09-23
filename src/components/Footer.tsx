@@ -7,7 +7,8 @@ export default function Footer() {
           <div>
             <p className="font-label text-[11px] uppercase tracking-[0.25em] mb-4">Wub fam HQ</p>
             <div className="flex flex-wrap gap-x-6 gap-y-2 font-label text-[12px] uppercase">
-              <a href="https://instagram.com/milly_wubbs" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">Instagram</a>
+              <a href="https://www.instagram.com/milly_wubbs/" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">Instagram</a>
+              <a href="https://soundcloud.com/chendo-urcino-1" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">SoundCloud</a>
               <a href="mailto:booking@millywubbs.com" className="hover:text-white transition-colors">Booking</a>
               <a href="/press-kit.zip" download className="hover:text-white transition-colors">Press kit</a>
             </div>

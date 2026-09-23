@@ -19,7 +19,7 @@ import Cursor from './components/Cursor';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const AUDIO_SRC = '/audio/wub-loop.mp3'; // PLACEHOLDER — swap for client track
+const AUDIO_SRC = '/audio/metamorphosis-opening-set.mp3'; // Milly's Metamorphosis opening set
 
 export default function App() {
   const tier = useMemo(detectQuality, []);
@@ -82,8 +82,8 @@ export default function App() {
         <Hero soundOn={soundOn} onToggleSound={toggleSound} />
         <Ticker />
         <Sound soundOn={soundOn} onToggleSound={toggleSound} />
-        <Visuals />
-        <Story tier={tier} />
+        <Visuals tier={tier} />
+        <Story />
         <Proof />
         <Vault />
       </main>

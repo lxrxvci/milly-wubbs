@@ -1,14 +1,10 @@
 import Reveal from './Reveal';
-import BioFilm from './BioFilm';
-import type { QualityTier } from '../lib/engine';
 
 /* ACT 03 — THE STORY. The scene engine pushes the chrome knot into closeup
    here and the lasers die down — the DOM mirrors it: quieter, closer, one
-   hand-drawn rupture on a machine-clean grid. Then the bio film locks the
-   scroll and plays the whole story as frames. */
-export default function Story({ tier }: { tier: QualityTier }) {
+   hand-drawn rupture on a machine-clean grid. */
+export default function Story() {
   return (
-    <>
     <section id="story" className="relative min-h-[150vh] flex items-center py-32 overflow-hidden">
       {/* ghost type backdrop — bleeds the BOTTOM-right edge, clear of the 03 index */}
       <span aria-hidden="true" className="font-display mw-outline uppercase absolute -right-[3vw] -bottom-[6vw] text-[24vw] leading-none select-none pointer-events-none">
@@ -87,11 +83,5 @@ export default function Story({ tier }: { tier: QualityTier }) {
         </div>
       </div>
     </section>
-
-    {/* the locked-in bio film — 7 frames, scrubbed under a pinned stage.
-        MUST live outside the section: any ancestor with overflow:hidden
-        kills position:sticky. */}
-    <BioFilm tier={tier} />
-    </>
   );
 }

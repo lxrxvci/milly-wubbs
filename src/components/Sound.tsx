@@ -84,7 +84,7 @@ export default function Sound({ soundOn, onToggleSound }: { soundOn: boolean; on
             <div className="mt-8 border border-white/15 p-5 bg-black/40 backdrop-blur-sm">
               <div className="flex items-center justify-between mb-4">
                 <span className="font-label text-[10px] uppercase text-[var(--mw-ink)]">Now spinning</span>
-                <span className="mw-cap">WUB LOOP — live demo</span>
+                <span className="mw-cap">Metamorphosis — opening set</span>
               </div>
               <div ref={meterRef} className="flex items-end gap-[3px] h-16" aria-hidden="true">
                 {Array.from({ length: BARS }).map((_, i) => (
@@ -128,6 +128,32 @@ export default function Sound({ soundOn, onToggleSound }: { soundOn: boolean; on
                 </button>
                 <span className="mw-cap tabular-nums">{fmt(time[0])} / {fmt(time[1])}</span>
               </div>
+            </div>
+            {/* stream the set on SoundCloud */}
+            <div className="mt-6 border border-white/15 p-5 bg-black/40 backdrop-blur-sm">
+              <div className="flex items-center justify-between mb-4">
+                <span className="font-label text-[10px] uppercase text-[var(--mw-ink)]">Stream / follow</span>
+                <a
+                  href="https://soundcloud.com/chendo-urcino-1"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mw-cap hover:text-[var(--mw-accent)] transition-colors"
+                  data-cursor="LISTEN"
+                >
+                  SoundCloud ↗
+                </a>
+              </div>
+              <iframe
+                title="Metamorphosis Opening Set — Milly Wubbs on SoundCloud"
+                width="100%"
+                height="166"
+                scrolling="no"
+                frameBorder="no"
+                allow="autoplay"
+                loading="lazy"
+                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2391999510&color=%23ff6d1b&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false"
+                className="w-full"
+              />
             </div>
           </div>
           <div className="relative">

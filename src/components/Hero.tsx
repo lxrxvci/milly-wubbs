@@ -83,7 +83,7 @@ export default function Hero({ soundOn, onToggleSound }: { soundOn: boolean; onT
         >
           {soundOn ? '⏸ Sound off' : '▶ Sound on'}
         </button>
-        <span className="mw-cap hidden md:inline">feat. live wub loop</span>
+        <span className="mw-cap hidden md:inline">feat. Metamorphosis opening set</span>
       </div>
 
       {/* scroll cue — sits on the ticker seam, bottom-center */}
