@@ -14,6 +14,7 @@ const particleVert = /* glsl */ `
   uniform float uTime;
   uniform float uBass;
   uniform float uPunch;
+  uniform float uParty;
   uniform float uScroll;
   uniform float uEnergy;
   attribute float aScale;
@@ -45,8 +46,19 @@ const particleFrag = /* glsl */ `
   precision highp float;
   uniform float uHighs;
   uniform float uPush;
+  uniform float uParty;
+  uniform sampler2D uFFT;
   varying float vAlpha;
   varying float vSeed;
+
+  // frequency-ordered brand palette: bass = Milly orange, mids = violet→magenta,
+  // highs = cyan→white. The brand owns the low end even mid-rave.
+  vec3 partyColor(float b) {
+    vec3 warm = mix(vec3(1.0, 0.427, 0.106), vec3(1.0, 0.22, 0.0), clamp(b / 0.18, 0.0, 1.0));
+    vec3 mid  = mix(vec3(0.75, 0.15, 1.0), vec3(1.0, 0.18, 0.65), clamp((b - 0.18) / 0.37, 0.0, 1.0));
+    vec3 high = mix(vec3(0.13, 0.83, 0.93), vec3(0.2, 0.4, 1.0), clamp((b - 0.55) / 0.45, 0.0, 1.0));
+    return b < 0.18 ? warm : (b < 0.55 ? mid : high);
+  }
 
   void main() {
     vec2 uv = gl_PointCoord - 0.5;
@@ -59,6 +71,14 @@ const particleFrag = /* glsl */ `
     col = mix(col, white, step(0.9, vSeed) * (0.35 + uHighs * 0.65));
     vec3 coral = vec3(1.0, 0.427, 0.106);
     col = mix(col, coral, uPush * (0.35 + 0.65 * step(0.55, vSeed)));
+    // party mode: each particle owns a slice of the live spectrum (pow biases
+    // toward the bass end) — color from the bin, brightness from its energy.
+    // Sampled in the fragment stage: vertex texture fetch is flaky on some
+    // ANGLE/Metal stacks.
+    float binPos = pow(vSeed, 2.0) * 0.98 + 0.01;
+    float fft = texture2D(uFFT, vec2(binPos, 0.5)).r;
+    vec3 party = partyColor(vSeed) * (0.75 + fft * 1.1);
+    col = mix(col, party, uParty * clamp(fft * 2.5 + 0.45, 0.0, 1.0));
     gl_FragColor = vec4(col, disc * vAlpha);
   }
 `;
@@ -82,22 +102,42 @@ function ParticleField({ tier }: { tier: QualityTier }) {
     return { positions, scales, seeds };
   }, [count]);
 
+  const fftTex = useMemo(() => {
+    // 256×1 RGBA spectrum texture (FFT in R) — a 1KB/frame upload.
+    // RGBA instead of RED: unswizzled path, works everywhere.
+    const t = new THREE.DataTexture(new Uint8Array(256 * 4), 256, 1, THREE.RGBAFormat, THREE.UnsignedByteType);
+    t.magFilter = THREE.LinearFilter;
+    t.minFilter = THREE.LinearFilter;
+    t.needsUpdate = true;
+    return t;
+  }, []);
+
   const uniforms = useMemo(() => ({
     uTime: { value: 0 },
     uBass: { value: 0 },
     uPunch: { value: 0 },
+    uParty: { value: 0 },
     uHighs: { value: 0 },
     uPush: { value: 0 },
     uScroll: { value: 0 },
     uEnergy: { value: 0.6 },
-  }), []);
+    uFFT: { value: fftTex },
+  }), [fftTex]);
 
   useFrame((_, dt) => {
     audioEngine.update();
+    if (audioEngine.freq) {
+      const d = fftTex.image.data as Uint8Array;
+      const f = audioEngine.freq;
+      for (let i = 0; i < 256; i++) { d[i * 4] = f[i]; d[i * 4 + 3] = 255; }
+      fftTex.needsUpdate = true;
+    }
     // drift speed rides the mids — the field hurries when the track does
     uniforms.uTime.value += dt * (0.7 + audioEngine.mids * 1.1 + audioEngine.punch * 0.4);
     uniforms.uBass.value = audioEngine.bass;
     uniforms.uPunch.value = audioEngine.punch;
+    // party scales with level too: a quiet intro stays classy, the drop raves
+    uniforms.uParty.value = audioEngine.party * Math.min(1, audioEngine.level * 2.2);
     uniforms.uHighs.value = audioEngine.highs;
     uniforms.uScroll.value = scrollStore.progress;
     uniforms.uPush.value = pushAmount(scrollStore.progress);
@@ -157,6 +197,15 @@ function Lasers() {
   ], []);
   const mats = useRef<THREE.ShaderMaterial[]>([]);
   const meshes = useRef<(THREE.Mesh | null)[]>([]);
+  // party palette — beams flip one step per detected kick, brand orange leads
+  const partyColors = useMemo(() => [
+    new THREE.Color('#ff6d1b'),
+    new THREE.Color('#ff2ea6'),
+    new THREE.Color('#c026ff'),
+    new THREE.Color('#22d3ee'),
+  ], []);
+  const baseColors = useMemo(() => beams.map((b) => b.color.clone()), [beams]);
+  const flip = useRef({ idx: 0, lastPunch: 0 });
 
   useFrame((state) => {
     const t = state.clock.elapsedTime;
@@ -165,6 +214,10 @@ function Lasers() {
     const push = pushAmount(p);
     const bass = audioEngine.bass;
     const punch = audioEngine.punch;
+    const party = audioEngine.party * Math.min(1, audioEngine.level * 2.2);
+    const f = flip.current;
+    if (party > 0.5 && punch > 0.55 && f.lastPunch <= 0.55) f.idx++;
+    f.lastPunch = punch;
     mats.current.forEach((m, i) => {
       if (!m) return;
       const isAccent = i === 1;
@@ -172,6 +225,9 @@ function Lasers() {
       // act gain gates the whole rig; idle floor so beams breathe even
       // pre-audio — kicks flash the rig via punch
       m.uniforms.uPulse.value = act.lasers * gain * (0.16 + bass * 0.7 + punch * 1.4) * (0.7 + 0.3 * Math.sin(i * 1.7));
+      // party mode cycles the rig through the palette; off = brand colors
+      const c = party > 0.35 ? partyColors[(f.idx + i) % partyColors.length] : baseColors[i];
+      (m.uniforms.uColor.value as THREE.Color).lerp(c, 0.12);
     });
     // motion is what reads as alive: beams sweep with the low end and
     // flare wider on each kick
@@ -274,6 +330,34 @@ function FogRig() {
   return null;
 }
 
+/* Party haze — the room itself takes color. Background + fog tint toward a
+   hue mixed continuously from the live band balance (bass=warm, mids=violet,
+   highs=cyan), depth keyed to the kick. Sound off: settles back to near-black.
+   Dark tints only, so DOM text never loses contrast. */
+function PartyLights() {
+  const { scene } = useThree();
+  const base = useMemo(() => new THREE.Color('#0a0a0a'), []);
+  const tint = useMemo(() => new THREE.Color(), []);
+  const scratch = useMemo(() => new THREE.Color(), []);
+  useFrame(() => {
+    const bg = scene.background as THREE.Color | null;
+    const fog = scene.fog as THREE.FogExp2 | null;
+    if (!bg) return;
+    const party = audioEngine.party * Math.min(1, audioEngine.level * 2.2);
+    const { bass, mids, highs } = audioEngine;
+    const sum = bass + mids + highs + 1e-4;
+    tint.setRGB(
+      (bass * 1.0 + mids * 0.65 + highs * 0.1) / sum,
+      (bass * 0.35 + mids * 0.2 + highs * 0.6) / sum,
+      (bass * 0.1 + mids * 1.0 + highs * 1.0) / sum,
+    );
+    scratch.copy(base).lerp(tint, party * (0.12 + audioEngine.punch * 0.14));
+    bg.lerp(scratch, 0.12);
+    if (fog) fog.color.copy(bg);
+  });
+  return null;
+}
+
 function PostStack() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const bloom = useRef<any>(null);
@@ -317,6 +401,7 @@ export default function Scene({ tier }: { tier: QualityTier }) {
         <color attach="background" args={['#0a0a0a']} />
         <fogExp2 attach="fog" args={['#0a0a0a', 0.055]} />
         <FogRig />
+        <PartyLights />
         <ParticleField tier={tier} />
         <Lasers />
         <ChromeKnot />

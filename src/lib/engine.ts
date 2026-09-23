@@ -79,6 +79,9 @@ class AudioEngine {
   // Fast attack, slow release — reads as a pump, not a strobe.
   punch = 0;
   private bassAvg = 0;
+  // party gate: 0 = monochrome discipline, 1 = full rave. Ramps with the
+  // audio fades so color arrives and leaves with the music.
+  party = 0;
 
   init(src: string) {
     if (this.el) return;
@@ -131,6 +134,7 @@ class AudioEngine {
       this.highs += (0 - this.highs) * 0.06;
       this.level += (0 - this.level) * 0.06;
       this.punch += (0 - this.punch) * 0.06;
+      this.party += (0 - this.party) * 0.04;
       return;
     }
     this.analyser.getByteFrequencyData(this.freq);
@@ -150,6 +154,8 @@ class AudioEngine {
     this.bassAvg += (b - this.bassAvg) * 0.04;
     const over = Math.min(1, Math.max(0, b - this.bassAvg * 1.15) * 3.5);
     this.punch += (over - this.punch) * (over > this.punch ? 0.5 : 0.07);
+    // party gate ramps up with the music
+    this.party += (1 - this.party) * 0.05;
   }
 }
 
