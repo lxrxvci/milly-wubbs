@@ -13,7 +13,7 @@ export default function Footer() {
               <a href="/press-kit.zip" download className="hover:text-white transition-colors">Press kit</a>
             </div>
           </div>
-          <p className="text-black/70 text-[12px] font-label uppercase tracking-wider">© {new Date().getFullYear()} Milly Wubbs — Portland, OR · Built loud.</p>
+          <p className="text-black/70 text-[12px] font-label uppercase tracking-wider">© {new Date().getFullYear()} Milly Wubbs · Portland, OR · Built loud.</p>
         </div>
         <img src="/logo.png" alt="" aria-hidden="true" className="w-full h-auto mt-12" />
       </div>

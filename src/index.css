@@ -83,8 +83,8 @@
   --mw-ink: #ebebeb;
   --mw-accent: #ff6d1b;   /* THE single accent — Milly's orange */
   --mw-chrome: #c9c9cf;   /* silver material, not a color accent */
-  --mw-grey: #55555a;
-  --mw-dim: #8b8b90;
+  --mw-grey: rgba(235,235,235,0.9);
+  --mw-dim: rgba(235,235,235,0.9);   /* grey text is dead: white at 90% */
 }
 
 html {
@@ -165,7 +165,7 @@ body {
   display: flex; justify-content: space-between; gap: 8px;
   padding: 6px 8px; background: rgba(10,10,10,0.55); backdrop-filter: blur(3px);
   font-family: 'Silkscreen', monospace; font-size: 10px; letter-spacing: 0.08em;
-  text-transform: uppercase; color: rgba(235,235,235,0.85);
+  text-transform: uppercase; color: rgba(235,235,235,0.9);
 }
 
 /* nav link hover — underline sweeps in from the left */

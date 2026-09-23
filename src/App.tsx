@@ -77,9 +77,22 @@ export default function App() {
       <div className="mw-grain" aria-hidden="true" />
       <Cursor />
       <Nav onBook={goBook} />
+      {/* sound toggle is global chrome: fixed, always reachable */}
+      <div className="fixed z-50 right-5 md:right-8 bottom-5 md:bottom-8 flex flex-col items-end gap-2">
+        <button
+          onClick={toggleSound}
+          data-on={soundOn}
+          data-cursor={soundOn ? 'OFF' : 'PLAY'}
+          className="mw-sound-cta font-label text-[11px] uppercase tracking-[0.2em] border border-[var(--mw-accent)] text-[var(--mw-accent)] px-5 py-3 bg-[#0a0a0a]/85 backdrop-blur-sm hover:bg-[var(--mw-accent)] hover:text-black transition-colors"
+          aria-pressed={soundOn}
+        >
+          {soundOn ? '⏸ Sound off' : '▶ Sound on'}
+        </button>
+        <span className="mw-cap hidden md:inline bg-[#0a0a0a]/70 backdrop-blur-sm px-2 py-1">feat. Metamorphosis opening set</span>
+      </div>
       <ProgressRail />
       <main className="relative z-10">
-        <Hero soundOn={soundOn} onToggleSound={toggleSound} />
+        <Hero />
         <Ticker />
         <Sound soundOn={soundOn} onToggleSound={toggleSound} />
         <Visuals tier={tier} />

@@ -7,13 +7,13 @@ import type { QualityTier } from '../lib/engine';
 gsap.registerPlugin(ScrollTrigger);
 
 const shots = [
-  { src: '/photos/jersey-hero-crowd.jpg',  cap: "The people's champ — arms up, zero jersey" },
-  { src: '/photos/laser-storm-booth.jpg',  cap: 'Behind the decks — Lost Lands laser storm' },
-  { src: '/photos/led-wall-triptych.jpg',  cap: 'The name in lights — the MILLY wall' },
-  { src: '/photos/b2b-green-lasers.jpg',   cap: 'Full crew on the booth — B2B nights' },
-  { src: '/photos/pyro-flames-stage.jpg',  cap: 'Festival scale — pyro line, main stage' },
-  { src: '/photos/theater-arms-crowd.jpg', cap: 'The family photo — every set ends like this' },
-  { src: '/photos/asas-red-room.jpg',      cap: 'The home floor — ASAS 1907, PDX' },
+  { src: '/photos/jersey-hero-crowd.jpg',  cap: "The people's champ · arms up, zero jersey" },
+  { src: '/photos/laser-storm-booth.jpg',  cap: 'Behind the decks · Lost Lands laser storm' },
+  { src: '/photos/led-wall-triptych.jpg',  cap: 'The name in lights · the MILLY wall' },
+  { src: '/photos/b2b-green-lasers.jpg',   cap: 'Full crew on the booth · B2B nights' },
+  { src: '/photos/pyro-flames-stage.jpg',  cap: 'Festival scale · pyro line, main stage' },
+  { src: '/photos/theater-arms-crowd.jpg', cap: 'The family photo · every set ends like this' },
+  { src: '/photos/asas-red-room.jpg',      cap: 'The home floor · ASAS 1907, PDX' },
 ];
 
 /* ACT 02 — THE VISUALS. The locked-in gallery: the viewport pins and ~485vh
@@ -86,7 +86,7 @@ export default function Visuals({ tier }: { tier: QualityTier }) {
           {shots.map((s, i) => (
             <figure key={i} className="mw-ledframe">
               <img src={s.src} alt={s.cap} loading="lazy" decoding="async" className="w-full max-h-[70vh] object-cover" />
-              <div className="mw-cap-overlay"><span>{s.cap}</span><span className="text-white/50">SHOT 0{i + 1} / 0{shots.length}</span></div>
+              <div className="mw-cap-overlay"><span>{s.cap}</span><span className="text-white/90">SHOT 0{i + 1} / 0{shots.length}</span></div>
             </figure>
           ))}
         </div>

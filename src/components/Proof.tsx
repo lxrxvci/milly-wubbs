@@ -2,9 +2,9 @@ import Reveal from './Reveal';
 
 const receipts = [
   { artist: 'SPACE LACES', role: 'Direct support', where: 'Portland, OR', badge: 'Direct support', hot: true },
-  { artist: 'JANTSEN', role: 'Billed w/ Mykaya + Riddimine', where: 'Realm — Portland, OR', badge: 'Billed', hot: false },
-  { artist: 'METAMORPHOSIS', role: 'Music & Arts Project — festival set', where: 'Name on the booth', badge: 'Festival set', hot: false },
-  { artist: 'LOST LANDS', role: 'In the trenches — front row regular', where: 'Legend Valley, OH', badge: 'In the trenches', hot: false },
+  { artist: 'JANTSEN', role: 'Billed w/ Mykaya + Riddimine', where: 'Realm · Portland, OR', badge: 'Billed', hot: false },
+  { artist: 'METAMORPHOSIS', role: 'Music & Arts Project · festival set', where: 'Name on the booth', badge: 'Festival set', hot: false },
+  { artist: 'LOST LANDS', role: 'In the trenches · front row regular', where: 'Legend Valley, OH', badge: 'In the trenches', hot: false },
 ];
 
 const tilts = [-3, 2, -1, 4];
@@ -68,7 +68,7 @@ export default function Proof() {
                 decoding="async"
               />
             </figure>
-            <figcaption className="mw-cap mt-3 flex justify-between"><span>Official flyer — Jantsen @ Realm PDX, June 26</span><span className="text-[var(--mw-accent)]">FIG. 03</span></figcaption>
+            <figcaption className="mw-cap mt-3 flex justify-between"><span>Official flyer · Jantsen @ Realm PDX, June 26</span><span className="text-[var(--mw-accent)]">FIG. 03</span></figcaption>
           </div>
           <div className="relative">
             <span className="mw-vf mw-vf-ink -left-2 -top-2 border-t border-l" />
@@ -76,7 +76,7 @@ export default function Proof() {
             <figure className="mw-ledframe">
               <img src="/photos/lostlands-duo.jpg" alt="Milly Wubbs front row at Lost Lands under the LED panels" className="w-full max-h-[66vh] object-cover" loading="lazy" decoding="async" />
             </figure>
-            <figcaption className="mw-cap mt-3 flex justify-between"><span>Lost Lands — under the panels</span><span className="text-[var(--mw-accent)]">FIG. 04</span></figcaption>
+            <figcaption className="mw-cap mt-3 flex justify-between"><span>Lost Lands · under the panels</span><span className="text-[var(--mw-accent)]">FIG. 04</span></figcaption>
           </div>
         </div>
       </div>

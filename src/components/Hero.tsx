@@ -4,10 +4,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* Hero v3 — asymmetric triangle: logo left-anchored, tagline bottom-left,
-   SOUND ON bottom-right. Ghost name bleeds off the TOP edge (deliberate).
-   Coral budget: the button border + one tagline word. That's it. */
-export default function Hero({ soundOn, onToggleSound }: { soundOn: boolean; onToggleSound: () => void }) {
+/* Hero v3 — logo centered, tagline bottom-left, ghost name bleeding off the
+   TOP edge (deliberate). The sound toggle is global chrome now (App.tsx).
+   Coral budget: one tagline word. That's it. */
+export default function Hero() {
   const wrap = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -43,8 +43,8 @@ export default function Hero({ soundOn, onToggleSound }: { soundOn: boolean; onT
       {/* HUD edge labels + ink viewfinder corners */}
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
         <span className="mw-hud absolute left-5 md:left-6 top-[4.5rem]">Producer \\ DJ</span>
-        <span className="mw-hud absolute right-5 md:right-6 top-[4.5rem]">PDX — 45.5152° N</span>
-        <span className="mw-hud mw-vtext absolute left-6 top-1/2 -translate-y-1/2 hidden md:block">Heavy wubs — big smiles</span>
+        <span className="mw-hud absolute right-5 md:right-6 top-[4.5rem]">PDX · 45.5152° N</span>
+        <span className="mw-hud mw-vtext absolute left-6 top-1/2 -translate-y-1/2 hidden md:block">Heavy wubs · big smiles</span>
         <span className="mw-hud mw-vtext absolute right-6 top-1/2 -translate-y-1/2 rotate-180 hidden md:block">EST. the rail, 2019</span>
         <span className="mw-vf mw-vf-ink left-4 top-[4.2rem] border-t border-l" />
         <span className="mw-vf mw-vf-ink right-4 top-[4.2rem] border-t border-r" />
@@ -68,22 +68,8 @@ export default function Hero({ soundOn, onToggleSound }: { soundOn: boolean; onT
       <div className="absolute z-10 left-5 md:left-[7vw] bottom-28 md:bottom-14 max-w-[70vw]">
         <p className="font-display uppercase text-[var(--mw-ink)] text-xl md:text-3xl tracking-tight leading-[1.05]">
           Heavy wubs. <span className="text-[var(--mw-accent)]">Big smiles.</span><br />
-          Riddim &amp; dubstep — Portland, OR.
+          Riddim &amp; dubstep · Portland, OR.
         </p>
-      </div>
-
-      {/* SOUND ON — bottom-right */}
-      <div className="absolute z-10 right-5 md:right-[7vw] bottom-16 md:bottom-14 flex flex-col items-end gap-2">
-        <button
-          onClick={onToggleSound}
-          data-on={soundOn}
-          data-cursor={soundOn ? 'OFF' : 'PLAY'}
-          className="mw-sound-cta font-label text-[11px] uppercase tracking-[0.2em] border border-[var(--mw-accent)] text-[var(--mw-accent)] px-5 py-3 hover:bg-[var(--mw-accent)] hover:text-black transition-colors"
-          aria-pressed={soundOn}
-        >
-          {soundOn ? '⏸ Sound off' : '▶ Sound on'}
-        </button>
-        <span className="mw-cap hidden md:inline">feat. Metamorphosis opening set</span>
       </div>
 
       {/* scroll cue — sits on the ticker seam, bottom-center */}

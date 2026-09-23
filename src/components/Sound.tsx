@@ -11,8 +11,8 @@ const BARS = 48;
 const TRACKS = [
   { title: 'Money Right', kind: 'Original', url: 'https://soundcloud.com/chendo-urcino-1/money-right' },
   { title: 'Hands On The Wheel (Sticky Icky Edit)', kind: 'Edit', url: 'https://soundcloud.com/chendo-urcino-1/hands-on-the-wheel-sticky-icky' },
-  { title: 'David Guetta — BAD (Milly Flip)', kind: 'Flip', url: 'https://soundcloud.com/chendo-urcino-1/david-guetta-bad-milly-flip' },
-  { title: 'Metallica — Unforgiven (Milly Wubbs Flip)', kind: 'Flip', url: 'https://soundcloud.com/chendo-urcino-1/metallica-unforgiven-milly-wubbs-flip' },
+  { title: 'David Guetta: BAD (Milly Flip)', kind: 'Flip', url: 'https://soundcloud.com/chendo-urcino-1/david-guetta-bad-milly-flip' },
+  { title: 'Metallica: Unforgiven (Milly Wubbs Flip)', kind: 'Flip', url: 'https://soundcloud.com/chendo-urcino-1/metallica-unforgiven-milly-wubbs-flip' },
 ];
 
 function fmt(t: number) {
@@ -83,7 +83,7 @@ export default function Sound({ soundOn, onToggleSound }: { soundOn: boolean; on
           className="font-display uppercase text-[9vw] md:text-[5.5vw] leading-[0.9] text-[var(--mw-ink)]"
         />
         <p className="mt-14 text-[var(--mw-dim)] max-w-[52ch] leading-relaxed">
-          Dubstep, riddim and everything that wobbles in between — heavy low
+          Dubstep, riddim and everything that wobbles in between. Heavy low
           end and precise sound design, out of Portland, OR.
         </p>
         <div className="grid md:grid-cols-[1fr_320px] gap-10 mt-8 items-stretch">
@@ -91,7 +91,7 @@ export default function Sound({ soundOn, onToggleSound }: { soundOn: boolean; on
             <div className="border border-white/15 p-5 bg-black/40 backdrop-blur-sm">
               <div className="flex items-center justify-between mb-4">
                 <span className="font-label text-[10px] uppercase text-[var(--mw-ink)]">Now spinning</span>
-                <span className="mw-cap">Metamorphosis — opening set</span>
+                <span className="mw-cap">Metamorphosis · opening set</span>
               </div>
               <div ref={meterRef} className="flex items-end gap-[3px] h-16" aria-hidden="true">
                 {Array.from({ length: BARS }).map((_, i) => (
@@ -151,7 +151,7 @@ export default function Sound({ soundOn, onToggleSound }: { soundOn: boolean; on
                 </a>
               </div>
               <iframe
-                title="Metamorphosis Opening Set — Milly Wubbs on SoundCloud"
+                title="Metamorphosis Opening Set: Milly Wubbs on SoundCloud"
                 width="100%"
                 height="166"
                 scrolling="no"
@@ -173,7 +173,7 @@ export default function Sound({ soundOn, onToggleSound }: { soundOn: boolean; on
             <div className="mw-ledframe relative overflow-hidden h-[70vw] md:h-auto md:flex-1">
               <img src="/photos/decks-closeup.jpg" alt="Milly Wubbs on CDJs mid-set" className="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />
             </div>
-            <p className="mw-cap mt-3 flex justify-between"><span>On the decks — PDX</span><span className="text-[var(--mw-accent)]">FIG. 01</span></p>
+            <p className="mw-cap mt-3 flex justify-between"><span>On the decks · PDX</span><span className="text-[var(--mw-accent)]">FIG. 01</span></p>
           </div>
         </div>
         {/* latest tracks — newest first, full width */}

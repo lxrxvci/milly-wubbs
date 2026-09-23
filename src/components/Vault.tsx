@@ -2,10 +2,10 @@ import { useState } from 'react';
 import Reveal from './Reveal';
 
 const pressShots = [
-  { src: '/photos/press-orange-sign.jpg', label: 'Portrait — orange tee' },
-  { src: '/photos/golden-hour-duo.jpg', label: 'Lifestyle — golden light' },
-  { src: '/photos/zero-jersey-crowd.jpg', label: 'Crowd — front of house' },
-  { src: '/photos/crowd-family-lasers.jpg', label: 'Crowd — family under lasers' },
+  { src: '/photos/press-orange-sign.jpg', label: 'Portrait · orange tee' },
+  { src: '/photos/golden-hour-duo.jpg', label: 'Lifestyle · golden light' },
+  { src: '/photos/zero-jersey-crowd.jpg', label: 'Crowd · front of house' },
+  { src: '/photos/crowd-family-lasers.jpg', label: 'Crowd · family under lasers' },
 ];
 
 function CopyBlock({ title, text }: { title: string; text: string }) {
@@ -40,14 +40,14 @@ export default function Vault() {
   return (
     <section id="vault" className="relative min-h-screen py-32">
       <div className="max-w-6xl mx-auto px-5 md:px-8">
-        <p className="mw-index mb-4">05 / The Vault — EPK</p>
+        <p className="mw-index mb-4">05 / The Vault · EPK</p>
         <Reveal
           variant="focus"
           text="BOOKING & PRESS KIT"
           className="font-display uppercase text-[8vw] md:text-[4.5vw] leading-[0.9]"
         />
         <p className="mt-6 text-[var(--mw-dim)] max-w-[56ch]">
-          Assets, bios, specs and contact — one page, no logins.
+          Assets, bios, specs and contact. One page, no logins.
         </p>
 
         {/* NEXT SET — honest TBA. Dashes stay dim; the action is the CTA. */}
@@ -55,7 +55,7 @@ export default function Vault() {
           <div>
             <p className="font-label text-[10px] uppercase text-[var(--mw-accent)]">Next set</p>
             <p className="font-display uppercase text-2xl md:text-4xl mt-2">
-              <span className="text-[var(--mw-dim)]">–– / ––</span> TBA
+              <span className="text-[var(--mw-dim)]">-- / --</span> TBA
             </p>
             <p className="mw-cap mt-2">Announced on Instagram first</p>
           </div>
@@ -70,19 +70,19 @@ export default function Vault() {
 
         <div className="grid md:grid-cols-2 gap-6 mt-10">
           <CopyBlock
-            title="Short bio — 60 words"
-            text="Milly Wubbs is a bass producer and DJ from Portland, OR, playing riddim-heavy dubstep. A longtime fixture of the Pacific Northwest bass scene, he's moved from the front row to direct support for Space Laces, with billings alongside Jantsen at Realm PDX and a festival set at the Metamorphosis Music & Arts Project — heavy wubs, big smiles."
+            title="Short bio · 60 words"
+            text="Milly Wubbs is a bass producer and DJ from Portland, OR, playing riddim-heavy dubstep. A longtime fixture of the Pacific Northwest bass scene, he's moved from the front row to direct support for Space Laces, with billings alongside Jantsen at Realm PDX and a festival set at the Metamorphosis Music & Arts Project. Heavy wubs, big smiles."
           />
           <CopyBlock
-            title="Extended bio — 120 words"
-            text="Milly Wubbs is a bass producer and DJ out of Portland, Oregon, and a longtime fixture of the Pacific Northwest riddim scene. After years on the rail as a fan — including every Lost Lands he could reach — he moved behind the decks, earning direct support for Space Laces, a billing alongside Jantsen at Realm PDX, and a festival set at the Metamorphosis Music & Arts Project. His sets run 140+ BPM: dubstep, riddim and heavy wubs with precise sound design, delivered with a joyful, unbothered stage presence — kandi on the wrist, orange on the chest. Available for festivals, club shows and direct support slots across the bass circuit. Booking, collabs and press: one inbox."
+            title="Extended bio · 120 words"
+            text="Milly Wubbs is a bass producer and DJ out of Portland, Oregon, and a longtime fixture of the Pacific Northwest riddim scene. After years on the rail as a fan, including every Lost Lands he could reach, he moved behind the decks, earning direct support for Space Laces, a billing alongside Jantsen at Realm PDX, and a festival set at the Metamorphosis Music & Arts Project. His sets run 140+ BPM: dubstep, riddim and heavy wubs with precise sound design, delivered with a joyful, unbothered stage presence: kandi on the wrist, orange on the chest. Available for festivals, club shows and direct support slots across the bass circuit. Booking, collabs and press: one inbox."
           />
         </div>
 
         {/* video — honest single row instead of a fake embed grid */}
         <div className="mt-12 border border-white/15 px-5 py-4 flex flex-col md:flex-row md:items-center gap-3">
-          <span className="font-label text-[10px] uppercase text-[var(--mw-ink)]">Video — live proof</span>
-          <span className="text-sm text-[var(--mw-dim)]">Full-set footage and festival recaps don't live on the page — they go straight to promoters.</span>
+          <span className="font-label text-[10px] uppercase text-[var(--mw-ink)]">Video · live proof</span>
+          <span className="text-sm text-[var(--mw-dim)]">Full-set footage and festival recaps don't live on the page. They go straight to promoters.</span>
           <a
             href="mailto:booking@millywubbs.com?subject=Live%20set%20video%20%E2%80%94%20Milly%20Wubbs"
             className="md:ml-auto font-label text-[10px] uppercase tracking-widest text-[var(--mw-accent)] hover:text-[var(--mw-ink)] transition-colors"
@@ -93,7 +93,7 @@ export default function Vault() {
         </div>
 
         <div className="mt-12">
-          <p className="mw-hud mb-5">Press photos — click to download</p>
+          <p className="mw-hud mb-5">Press photos · click to download</p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {pressShots.map((p, i) => (
               <a key={i} href={p.src} download className="group block" data-cursor="SAVE">
@@ -106,10 +106,10 @@ export default function Vault() {
           </div>
           <div className="flex flex-wrap gap-x-8 gap-y-3 mt-5">
             <a href="/press-kit.zip" download className="mw-cap text-[var(--mw-accent)] hover:text-[var(--mw-ink)] transition-colors" data-cursor="SAVE">
-              ↓ Full press kit — photos + logo (zip)
+              ↓ Full press kit · photos + logo (zip)
             </a>
             <a href="/logo.png" download className="mw-cap text-[var(--mw-accent)] hover:text-[var(--mw-ink)] transition-colors" data-cursor="SAVE">
-              ↓ Logo pack — MILLY WUBBS white throwie (PNG, transparent)
+              ↓ Logo pack · MILLY WUBBS white throwie (PNG, transparent)
             </a>
           </div>
         </div>
@@ -124,7 +124,7 @@ export default function Vault() {
           </div>
           <div className="border border-white/15 p-5">
             <p className="font-label text-[10px] uppercase text-[var(--mw-accent)] mb-2">Set specs</p>
-            <p className="text-sm text-[var(--mw-dim)] leading-relaxed mw-balance">Dubstep / riddim / bass. 60–90 min headline, 45–60 min support. Pyro welcome, not required.</p>
+            <p className="text-sm text-[var(--mw-dim)] leading-relaxed mw-balance">Dubstep / riddim / bass. 60-90 min headline, 45-60 min support. Pyro welcome, not required.</p>
           </div>
           <div className="border border-white/15 p-5">
             <p className="font-label text-[10px] uppercase text-[var(--mw-accent)] mb-2">Routing</p>
@@ -134,7 +134,7 @@ export default function Vault() {
 
         <div className="mt-14 border border-[var(--mw-accent)]/40 bg-[var(--mw-accent)]/[0.06] p-8 md:p-10 text-center">
           <p className="font-display uppercase text-3xl md:text-5xl">Book a date</p>
-          <p className="mt-3 text-[var(--mw-dim)]">Booking, collabs &amp; press — one inbox.</p>
+          <p className="mt-3 text-[var(--mw-dim)]">Booking, collabs &amp; press. One inbox.</p>
           <a href="mailto:booking@millywubbs.com" className="mw-book inline-block mt-6 text-sm px-8 py-4" data-cursor="BOOK">
             booking@millywubbs.com
           </a>
