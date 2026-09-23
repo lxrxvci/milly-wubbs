@@ -26,6 +26,9 @@ const particleVert = /* glsl */ `
     float t = uTime * 0.12 + aSeed * 6.2831;
     p.x += sin(t + p.y * 0.35) * 0.6 * (0.4 + uEnergy);
     p.y += cos(t * 0.8 + p.x * 0.25) * 0.5 * (0.4 + uEnergy);
+    // kick agitation — the field shivers on each transient
+    p.x += sin(aSeed * 43.0 + uTime * 9.0) * uPunch * 0.45 * uEnergy;
+    p.y += cos(aSeed * 31.0 + uTime * 7.0) * uPunch * 0.35 * uEnergy;
     float breathe = 1.0 + (uBass * 0.7 + uPunch * 1.1) * uEnergy;
     p *= breathe;
     p.y += uScroll * 14.0;
@@ -91,7 +94,8 @@ function ParticleField({ tier }: { tier: QualityTier }) {
 
   useFrame((_, dt) => {
     audioEngine.update();
-    uniforms.uTime.value += dt;
+    // drift speed rides the mids — the field hurries when the track does
+    uniforms.uTime.value += dt * (0.7 + audioEngine.mids * 1.1 + audioEngine.punch * 0.4);
     uniforms.uBass.value = audioEngine.bass;
     uniforms.uPunch.value = audioEngine.punch;
     uniforms.uHighs.value = audioEngine.highs;
@@ -152,8 +156,10 @@ function Lasers() {
     { rot: -0.9, color: new THREE.Color('#f4f4f5'), x: 7 },
   ], []);
   const mats = useRef<THREE.ShaderMaterial[]>([]);
+  const meshes = useRef<(THREE.Mesh | null)[]>([]);
 
-  useFrame(() => {
+  useFrame((state) => {
+    const t = state.clock.elapsedTime;
     const p = scrollStore.progress;
     const act = actState(p);
     const push = pushAmount(p);
@@ -167,12 +173,25 @@ function Lasers() {
       // pre-audio — kicks flash the rig via punch
       m.uniforms.uPulse.value = act.lasers * gain * (0.16 + bass * 0.7 + punch * 1.4) * (0.7 + 0.3 * Math.sin(i * 1.7));
     });
+    // motion is what reads as alive: beams sweep with the low end and
+    // flare wider on each kick
+    meshes.current.forEach((mesh, i) => {
+      if (!mesh) return;
+      const sway = 0.05 + bass * 0.14 + punch * 0.22;
+      mesh.rotation.z = beams[i].rot + Math.sin(t * (0.4 + i * 0.13) + i * 2.1) * sway;
+      mesh.scale.x = 1 + punch * 0.8;
+    });
   });
 
   return (
     <group position={[0, 6, -10]}>
       {beams.map((b, i) => (
-        <mesh key={i} position={[b.x, -4, 0]} rotation={[0, 0, b.rot]}>
+        <mesh
+          key={i}
+          ref={(m) => { meshes.current[i] = m; }}
+          position={[b.x, -4, 0]}
+          rotation={[0, 0, b.rot]}
+        >
           <planeGeometry args={[1.4, 34]} />
           <shaderMaterial
             ref={(m) => { if (m) mats.current[i] = m; }}
@@ -228,7 +247,9 @@ function CameraRig() {
   const { camera, pointer } = useThree();
   useFrame(() => {
     const p = scrollStore.progress;
-    camera.position.z = THREE.MathUtils.lerp(camera.position.z, 13 - p * 6, 0.06);
+    // dolly lunges down the track on each kick — inside the lerp target
+    // so it settles back, never accumulates
+    camera.position.z = THREE.MathUtils.lerp(camera.position.z, 13 - p * 6 - audioEngine.punch * 0.8, 0.06);
     camera.position.y = THREE.MathUtils.lerp(camera.position.y, -p * 10 + 1.5, 0.06);
     camera.position.x = THREE.MathUtils.lerp(camera.position.x, Math.sin(p * Math.PI * 2) * 1.6, 0.06);
     camera.position.x += pointer.x * 0.35;

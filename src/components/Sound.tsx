@@ -82,13 +82,13 @@ export default function Sound({ soundOn, onToggleSound }: { soundOn: boolean; on
           text="DUBSTEP, RIDDIM & HEAVY WUBS"
           className="font-display uppercase text-[9vw] md:text-[5.5vw] leading-[0.9] text-[var(--mw-ink)]"
         />
-        <div className="grid md:grid-cols-[1fr_320px] gap-10 mt-14 items-end">
+        <p className="mt-14 text-[var(--mw-dim)] max-w-[52ch] leading-relaxed">
+          Dubstep, riddim and everything that wobbles in between — heavy low
+          end and precise sound design, out of Portland, OR.
+        </p>
+        <div className="grid md:grid-cols-[1fr_320px] gap-10 mt-8 items-stretch">
           <div>
-            <p className="text-[var(--mw-dim)] max-w-[52ch] leading-relaxed">
-              Dubstep, riddim and everything that wobbles in between — heavy low
-              end and precise sound design, out of Portland, OR.
-            </p>
-            <div className="mt-8 border border-white/15 p-5 bg-black/40 backdrop-blur-sm">
+            <div className="border border-white/15 p-5 bg-black/40 backdrop-blur-sm">
               <div className="flex items-center justify-between mb-4">
                 <span className="font-label text-[10px] uppercase text-[var(--mw-ink)]">Now spinning</span>
                 <span className="mw-cap">Metamorphosis — opening set</span>
@@ -162,40 +162,42 @@ export default function Sound({ soundOn, onToggleSound }: { soundOn: boolean; on
                 className="w-full"
               />
             </div>
-            {/* latest tracks — newest first */}
-            <div className="mt-10">
-              <p className="mw-hud mb-4">Latest tracks</p>
-              {TRACKS.map((t, i) => (
-                <div key={i} className="group border-t border-white/12 py-4 flex items-center gap-4 px-2 -mx-2 hover:bg-white/[0.03] transition-colors">
-                  <span className="font-label text-[11px] text-[var(--mw-dim)] w-6">{String(i + 1).padStart(2, '0')}</span>
-                  <div className="min-w-0">
-                    <p className="font-display uppercase text-lg md:text-xl tracking-tight text-[var(--mw-ink)] leading-tight">{t.title}</p>
-                    <p className="mw-cap mt-1">{t.kind}</p>
-                  </div>
-                  <a
-                    href={t.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="ml-auto shrink-0 font-label text-[10px] uppercase tracking-widest border border-white/25 text-[var(--mw-ink)] px-3 py-2 hover:border-[var(--mw-accent)] hover:text-[var(--mw-accent)] transition-colors"
-                    data-cursor="PLAY"
-                  >
-                    ▶ SC
-                  </a>
-                </div>
-              ))}
-              <div className="border-t border-white/12" />
-            </div>
           </div>
-          <div className="relative">
+          <div className="relative flex flex-col">
             <span className="mw-vf mw-vf-ink -left-2 -top-2 border-t border-l" />
             <span className="mw-vf mw-vf-ink -right-2 -top-2 border-t border-r" />
             <span className="mw-vf mw-vf-ink -left-2 -bottom-2 border-b border-l" />
             <span className="mw-vf mw-vf-ink -right-2 -bottom-2 border-b border-r" />
-            <div className="mw-ledframe">
-              <img src="/photos/decks-closeup.jpg" alt="Milly Wubbs on CDJs mid-set" className="w-full h-auto" loading="lazy" decoding="async" />
+            {/* photo stretches to match the two cards: NOW SPINNING top →
+                STREAM/FOLLOW bottom */}
+            <div className="mw-ledframe relative overflow-hidden h-[70vw] md:h-auto md:flex-1">
+              <img src="/photos/decks-closeup.jpg" alt="Milly Wubbs on CDJs mid-set" className="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />
             </div>
             <p className="mw-cap mt-3 flex justify-between"><span>On the decks — PDX</span><span className="text-[var(--mw-accent)]">FIG. 01</span></p>
           </div>
+        </div>
+        {/* latest tracks — newest first, full width */}
+        <div className="mt-10">
+          <p className="mw-hud mb-4">Latest tracks</p>
+          {TRACKS.map((t, i) => (
+            <div key={i} className="group border-t border-white/12 py-4 flex items-center gap-4 px-2 -mx-2 hover:bg-white/[0.03] transition-colors">
+              <span className="font-label text-[11px] text-[var(--mw-dim)] w-6">{String(i + 1).padStart(2, '0')}</span>
+              <div className="min-w-0">
+                <p className="font-display uppercase text-lg md:text-xl tracking-tight text-[var(--mw-ink)] leading-tight">{t.title}</p>
+                <p className="mw-cap mt-1">{t.kind}</p>
+              </div>
+              <a
+                href={t.url}
+                target="_blank"
+                rel="noreferrer"
+                className="ml-auto shrink-0 font-label text-[10px] uppercase tracking-widest border border-white/25 text-[var(--mw-ink)] px-3 py-2 hover:border-[var(--mw-accent)] hover:text-[var(--mw-accent)] transition-colors"
+                data-cursor="PLAY"
+              >
+                ▶ SC
+              </a>
+            </div>
+          ))}
+          <div className="border-t border-white/12" />
         </div>
       </div>
     </section>
