@@ -5,7 +5,7 @@ const links = [
   { id: 'sound', label: 'Sound', n: '01' },
   { id: 'visuals', label: 'Visuals', n: '02' },
   { id: 'story', label: 'Story', n: '03' },
-  { id: 'proof', label: 'Proof', n: '04' },
+  { id: 'proof', label: 'Shows', n: '04' },
   { id: 'vault', label: 'Vault / EPK', n: '05' },
 ];
 

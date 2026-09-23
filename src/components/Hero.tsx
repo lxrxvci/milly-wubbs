@@ -27,7 +27,7 @@ export default function Hero({ soundOn, onToggleSound }: { soundOn: boolean; onT
         <img
           src="/photos/hero-metamorphosis.jpg"
           alt="Milly Wubbs on stage at Metamorphosis, orange tee against the light"
-          className="w-full h-full object-cover object-[center_70%] opacity-55"
+          className="w-full h-full object-cover object-[center_30%] opacity-55"
           fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-transparent to-black/75" />
@@ -65,10 +65,10 @@ export default function Hero({ soundOn, onToggleSound }: { soundOn: boolean; onT
       </div>
 
       {/* tagline — bottom-left block */}
-      <div className="absolute z-10 left-5 md:left-[7vw] bottom-16 md:bottom-14 max-w-[70vw]">
+      <div className="absolute z-10 left-5 md:left-[7vw] bottom-28 md:bottom-14 max-w-[70vw]">
         <p className="font-display uppercase text-[var(--mw-ink)] text-xl md:text-3xl tracking-tight leading-[1.05]">
           Heavy wubs. <span className="text-[var(--mw-accent)]">Big smiles.</span><br />
-          No mercy on the low end.
+          Riddim &amp; dubstep — Portland, OR.
         </p>
       </div>
 
@@ -88,7 +88,7 @@ export default function Hero({ soundOn, onToggleSound }: { soundOn: boolean; onT
 
       {/* scroll cue — sits on the ticker seam, bottom-center */}
       <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10">
-        <span className="mw-cap">Scroll — the set starts now</span>
+        <span className="mw-cap">Scroll</span>
       </div>
     </section>
   );

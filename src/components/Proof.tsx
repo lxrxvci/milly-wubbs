@@ -4,22 +4,22 @@ const receipts = [
   { artist: 'SPACE LACES', role: 'Direct support', where: 'Portland, OR', badge: 'Direct support', hot: true },
   { artist: 'JANTSEN', role: 'Billed w/ Mykaya + Riddimine', where: 'Realm — Portland, OR', badge: 'Billed', hot: false },
   { artist: 'METAMORPHOSIS', role: 'Music & Arts Project — festival set', where: 'Name on the booth', badge: 'Festival set', hot: false },
-  { artist: 'LOST LANDS', role: 'In the trenches — bass music mecca', where: 'Legend Valley, OH', badge: 'In the trenches', hot: false },
+  { artist: 'LOST LANDS', role: 'In the trenches — front row regular', where: 'Legend Valley, OH', badge: 'In the trenches', hot: false },
 ];
 
 const tilts = [-3, 2, -1, 4];
 
 const floors = ['SPACE LACES', 'JANTSEN', 'REALM PDX', 'LOST LANDS', 'METAMORPHOSIS', 'ASAS 1907'];
 
-/* ACT 04 — THE PROOF. Receipts, not adjectives. */
+/* ACT 04 — RECENT SHOWS. The track record, row by row. */
 export default function Proof() {
   return (
     <section id="proof" className="relative min-h-[120vh] flex items-center py-32">
       <div className="max-w-6xl mx-auto px-5 md:px-8 w-full">
-        <p className="mw-index mb-4">04 / The Proof</p>
+        <p className="mw-index mb-4">04 / Recent Shows</p>
         <Reveal
           variant="scramble"
-          text="RECEIPTS, NOT ADJECTIVES"
+          text="RECENT SHOWS"
           className="font-display uppercase text-[9vw] md:text-[5.5vw] leading-[0.9]"
         />
 
@@ -68,7 +68,7 @@ export default function Proof() {
                 decoding="async"
               />
             </figure>
-            <figcaption className="mw-cap mt-3 flex justify-between"><span>Official flyer — Jantsen @ Realm PDX, June 26</span><span className="text-[var(--mw-accent)]">EXH. A</span></figcaption>
+            <figcaption className="mw-cap mt-3 flex justify-between"><span>Official flyer — Jantsen @ Realm PDX, June 26</span><span className="text-[var(--mw-accent)]">FIG. 03</span></figcaption>
           </div>
           <div className="relative">
             <span className="mw-vf mw-vf-ink -left-2 -top-2 border-t border-l" />
@@ -76,7 +76,7 @@ export default function Proof() {
             <figure className="mw-ledframe">
               <img src="/photos/lostlands-duo.jpg" alt="Milly Wubbs front row at Lost Lands under the LED panels" className="w-full max-h-[66vh] object-cover" loading="lazy" decoding="async" />
             </figure>
-            <figcaption className="mw-cap mt-3 flex justify-between"><span>Lost Lands — under the panels</span><span className="text-[var(--mw-accent)]">EXH. B</span></figcaption>
+            <figcaption className="mw-cap mt-3 flex justify-between"><span>Lost Lands — under the panels</span><span className="text-[var(--mw-accent)]">FIG. 04</span></figcaption>
           </div>
         </div>
       </div>

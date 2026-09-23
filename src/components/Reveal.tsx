@@ -103,5 +103,5 @@ export default function Reveal({
       </Tag>
     );
   }
-  return <Tag ref={ref} className={className} aria-label={text}>{text}</Tag>;
+  return <Tag ref={ref} className={`mw-reveal-block ${className}`} aria-label={text}>{text}</Tag>;
 }

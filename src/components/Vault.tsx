@@ -2,10 +2,10 @@ import { useState } from 'react';
 import Reveal from './Reveal';
 
 const pressShots = [
-  { src: '/photos/press-orange-sign.jpg', label: 'Portrait — orange tee (web-res)' },
-  { src: '/photos/golden-hour-duo.jpg', label: 'Lifestyle — golden light (web-res)' },
-  { src: '/photos/zero-jersey-crowd.jpg', label: 'Crowd — front of house (web-res)' },
-  { src: '/photos/crowd-family-lasers.jpg', label: 'Crowd — family under lasers (web-res)' },
+  { src: '/photos/press-orange-sign.jpg', label: 'Portrait — orange tee' },
+  { src: '/photos/golden-hour-duo.jpg', label: 'Lifestyle — golden light' },
+  { src: '/photos/zero-jersey-crowd.jpg', label: 'Crowd — front of house' },
+  { src: '/photos/crowd-family-lasers.jpg', label: 'Crowd — family under lasers' },
 ];
 
 function CopyBlock({ title, text }: { title: string; text: string }) {
@@ -43,11 +43,11 @@ export default function Vault() {
         <p className="mw-index mb-4">05 / The Vault — EPK</p>
         <Reveal
           variant="focus"
-          text="EVERYTHING A PROMOTER NEEDS"
+          text="BOOKING & PRESS KIT"
           className="font-display uppercase text-[8vw] md:text-[4.5vw] leading-[0.9]"
         />
         <p className="mt-6 text-[var(--mw-dim)] max-w-[56ch]">
-          One page, one click, no logins. Grab assets, copy the bio, check the specs, send the offer.
+          Assets, bios, specs and contact — one page, no logins.
         </p>
 
         {/* NEXT SET — honest TBA. Dashes stay dim; the action is the CTA. */}
@@ -71,11 +71,11 @@ export default function Vault() {
         <div className="grid md:grid-cols-2 gap-6 mt-10">
           <CopyBlock
             title="Short bio — 60 words"
-            text="Milly Wubbs is a Portland, OR bass producer and DJ serving riddim-heavy dubstep with house-party energy. A PNW scene fixture turned direct support for Space Laces, his sets pair studio-grade wubs with pure joy — kandi on the wrist, orange on the chest, and a crowd that leaves as family."
+            text="Milly Wubbs is a bass producer and DJ from Portland, OR, playing riddim-heavy dubstep. A longtime fixture of the Pacific Northwest bass scene, he's moved from the front row to direct support for Space Laces, with billings alongside Jantsen at Realm PDX and a festival set at the Metamorphosis Music & Arts Project — heavy wubs, big smiles."
           />
           <CopyBlock
             title="Extended bio — 120 words"
-            text="Milly Wubbs is a bass producer and DJ out of Portland, Oregon, carving his name into the Pacific Northwest riddim scene one sold-out rail at a time. Known for filthy low-end engineering and an infectiously joyful stage presence, he's moved from the front row of Lost Lands to direct support for Space Laces, with billings alongside Jantsen at Realm PDX and a festival set at the Metamorphosis Music & Arts Project. His sound lives at 140+ BPM: heavy wubs, precise sound design, and zero filler. His shows feel like the whole room winning together — phones up, heads over the rail, everybody in the family photo at the end. Bookings: festivals, club takeovers, and direct support slots across the bass circuit."
+            text="Milly Wubbs is a bass producer and DJ out of Portland, Oregon, and a longtime fixture of the Pacific Northwest riddim scene. After years on the rail as a fan — including every Lost Lands he could reach — he moved behind the decks, earning direct support for Space Laces, a billing alongside Jantsen at Realm PDX, and a festival set at the Metamorphosis Music & Arts Project. His sets run 140+ BPM: dubstep, riddim and heavy wubs with precise sound design, delivered with a joyful, unbothered stage presence — kandi on the wrist, orange on the chest. Available for festivals, club shows and direct support slots across the bass circuit. Booking, collabs and press: one inbox."
           />
         </div>
 
@@ -117,24 +117,24 @@ export default function Vault() {
         <div className="grid md:grid-cols-3 gap-6 mt-12">
           <div className="border border-white/15 p-5 flex flex-col">
             <p className="font-label text-[10px] uppercase text-[var(--mw-accent)] mb-2">Tech rider</p>
-            <p className="text-sm text-[var(--mw-dim)] leading-relaxed">4× CDJ-3000 + DJM-A9 preferred (2× CDJ + DJM-900NXS2 minimum). Booth monitors mandatory.</p>
+            <p className="text-sm text-[var(--mw-dim)] leading-relaxed mw-balance">4× CDJ-3000 + DJM-A9 preferred; 2× CDJ + DJM-900NXS2 minimum. Booth monitors required.</p>
             <a href="mailto:booking@millywubbs.com?subject=Tech%20rider%20PDF%20%E2%80%94%20Milly%20Wubbs" className="mw-cap mt-auto pt-3 text-[var(--mw-ink)] hover:text-[var(--mw-accent)] transition-colors" data-cursor="ASK">
               Full rider PDF on request →
             </a>
           </div>
           <div className="border border-white/15 p-5">
             <p className="font-label text-[10px] uppercase text-[var(--mw-accent)] mb-2">Set specs</p>
-            <p className="text-sm text-[var(--mw-dim)] leading-relaxed">Dubstep / riddim / bass. 60–90 min headline, 45–60 min support. No pyro required — but encouraged.</p>
+            <p className="text-sm text-[var(--mw-dim)] leading-relaxed mw-balance">Dubstep / riddim / bass. 60–90 min headline, 45–60 min support. Pyro welcome, not required.</p>
           </div>
           <div className="border border-white/15 p-5">
             <p className="font-label text-[10px] uppercase text-[var(--mw-accent)] mb-2">Routing</p>
-            <p className="text-sm text-[var(--mw-dim)] leading-relaxed">Based in Portland, OR (PDX). West Coast routing friendly; fly-out ready with advance.</p>
+            <p className="text-sm text-[var(--mw-dim)] leading-relaxed mw-balance">Based in Portland, OR (PDX). West Coast routing friendly; fly-out ready with advance.</p>
           </div>
         </div>
 
         <div className="mt-14 border border-[var(--mw-accent)]/40 bg-[var(--mw-accent)]/[0.06] p-8 md:p-10 text-center">
-          <p className="font-display uppercase text-3xl md:text-5xl">Bring the wubs to your city</p>
-          <p className="mt-3 text-[var(--mw-dim)]">Booking, collabs &amp; press — one inbox, fast replies.</p>
+          <p className="font-display uppercase text-3xl md:text-5xl">Book a date</p>
+          <p className="mt-3 text-[var(--mw-dim)]">Booking, collabs &amp; press — one inbox.</p>
           <a href="mailto:booking@millywubbs.com" className="mw-book inline-block mt-6 text-sm px-8 py-4" data-cursor="BOOK">
             booking@millywubbs.com
           </a>

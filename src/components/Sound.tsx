@@ -72,14 +72,14 @@ export default function Sound({ soundOn, onToggleSound }: { soundOn: boolean; on
         <p className="mw-index mb-4">01 / The Sound</p>
         <Reveal
           variant="clip"
-          text="RIDDIM-HEAVY BASS, BUILT FOR THE RAIL"
+          text="DUBSTEP, RIDDIM & HEAVY WUBS"
           className="font-display uppercase text-[9vw] md:text-[5.5vw] leading-[0.9] text-[var(--mw-ink)]"
         />
         <div className="grid md:grid-cols-[1fr_320px] gap-10 mt-14 items-end">
           <div>
             <p className="text-[var(--mw-dim)] max-w-[52ch] leading-relaxed">
-              Dubstep, riddim and everything that wobbles in between. Milly Wubbs sets are
-              engineered pressure — the kind that puts phones in the air and heads over the rail.
+              Dubstep, riddim and everything that wobbles in between — heavy low
+              end and precise sound design, out of Portland, OR.
             </p>
             <div className="mt-8 border border-white/15 p-5 bg-black/40 backdrop-blur-sm">
               <div className="flex items-center justify-between mb-4">

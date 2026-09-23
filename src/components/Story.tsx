@@ -51,17 +51,17 @@ export default function Story() {
 
           <div>
             <p className="text-lg md:text-xl leading-relaxed text-[var(--mw-ink)] max-w-[56ch]">
-              Milly Wubbs is a Portland, OR bass producer and DJ riding the line between
-              filthy riddim engineering and pure, unbothered joy. A fixture of the Pacific
-              Northwest bass scene, he's gone from rail-riding fan to direct support for
-              <span className="text-[var(--mw-ink)] font-semibold"> Space Laces</span> — and his sets
-              feel less like performances and more like the whole room winning together.
+              Milly Wubbs is a bass producer and DJ from Portland, OR, playing
+              riddim-heavy dubstep. A fixture of the Pacific Northwest bass scene,
+              he's gone from rail-riding fan to direct support for
+              <span className="text-[var(--mw-ink)] font-semibold"> Space Laces</span> — and his
+              sets are loud, precise and genuinely joyful.
             </p>
             <p className="mt-6 text-[var(--mw-dim)] leading-relaxed max-w-[56ch]">
               Billed alongside Jantsen at Realm PDX, fresh off the Metamorphosis Music &amp; Arts
-              Project, and a familiar face in the Lost Lands trenches — Milly brings studio-grade
-              sound design with house-party energy. Kandi on the wrist, orange on the chest,
-              wubs on the system.
+              Project, and a familiar face at Lost Lands — Milly pairs careful sound
+              design with an easygoing stage presence. Kandi on the wrist, orange on
+              the chest, wubs on the system.
             </p>
 
             {/* stat cluster — deliberately unequal: sizes, offsets, one tilted */}

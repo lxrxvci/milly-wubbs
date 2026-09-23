@@ -230,6 +230,13 @@ body {
 .mw-line { overflow: hidden; display: block; }
 .mw-char { display: inline-block; transform: translateY(115%); will-change: transform; }
 
+/* clip/slide/scramble/focus reveals need a single-box element: clip-path
+   percentages and transforms misbehave on multi-line inline spans */
+.mw-reveal-block { display: inline-block; text-wrap: balance; }
+
+/* short spec cards — even line distribution, no two-word stubs */
+.mw-balance { text-wrap: balance; }
+
 /* section index label */
 .mw-index {
   font-family: 'Silkscreen', monospace; letter-spacing: 0.22em;
@@ -258,6 +265,9 @@ a:hover { color: var(--mw-accent); }
 
 /* photo captions */
 .mw-cap { font-family:'Silkscreen',monospace; font-size:10px; letter-spacing:.2em; color:var(--mw-dim); text-transform:uppercase; }
+
+/* avoid ragged one-word last lines in body copy */
+p { text-wrap: pretty; }
 
 /* booking button */
 .mw-book {

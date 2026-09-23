@@ -1,8 +1,8 @@
 /* Ticker — the streetwear marquee. One accent word per loop, everything
    else monochrome. Duplicated content makes the -50% loop seamless. */
 const ITEMS = [
-  'Heavy wubs', 'Big smiles', 'No mercy on the low end', 'PDX',
-  '140+ BPM', 'Riddim engineered for the rail', 'Direct support — Space Laces',
+  'Heavy wubs', 'Big smiles', 'Dubstep / riddim / bass', 'PDX',
+  '140+ BPM', 'Portland, OR', 'Direct support — Space Laces',
 ];
 
 export default function Ticker() {
